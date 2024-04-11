@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/insert" method="post">
+        <label for="username">Username</label><br>
+        <input type="text" name="name"><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password"><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email"><br>
+        <button type="submit" name="button">insertUser</button>
+    </form>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>username</th>
+            <th>password</th>
+            <th>email</th>
+            <th>delete</th>
+            <th>update</th>
+        </tr>
+        <%data.forEach((user)=>{%>
+            <tr>
+                <td><%=user.id%></td>
+                <td><%=user.name%></td>
+                <td><%=user.password%></td>
+                <td><%=user.email%></td>
+                <td><form action="/delete" method="post"><button>delete</button> <input type="hidden" name="id" value="<%=user.id%>"></form></td>
+               <td><form action="/update" method="post">
+                    <label for="username">Username</label><br>
+                    <input type="text" name="name" value="<%=user.name%>"><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" value="<%=user.password%>"><br>
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" value="<%=user.email%>"><br>
+                    <button>update</button> 
+                    <input type="hidden"  name="id" value="<%=user.id%>">
+                </form></td>
+
+            </tr>
+            <%})%>
+    </table>
+</body>
+</html>
